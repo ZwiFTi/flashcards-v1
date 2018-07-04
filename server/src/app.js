@@ -102,7 +102,7 @@ app.delete('/cards/:id', (req, res) => {
 })
 
 // Play game
-// Fetch 10 cards
+// Fetch 10 random cards
 app.get('/game', (req, res) => {
   Card.find({}, 'question answer', function (error, cards) {
     if (error) { console.error(error); }

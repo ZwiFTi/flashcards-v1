@@ -1,7 +1,6 @@
 import Api from '@/services/Api'
 
 export default {
-
   fetchCards () {
     return Api().get('cards')
   },
@@ -20,5 +19,9 @@ export default {
 
   deleteCard (id) {
     return Api().delete('cards/' + id)
+  },
+
+  fetchGameCards () {
+    return Api().get('game')
   }
 }

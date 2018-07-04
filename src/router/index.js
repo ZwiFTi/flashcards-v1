@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Cards from '@/components/Cards'
 import NewCard from '@/components/NewCard'
 import EditCard from '@/components/EditCard'
+import Game from '@/components/Game'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/posts/:id',
       name: 'EditCard',
       component: EditCard
+    },
+    {
+      path: '/game',
+      name: 'Game',
+      component: Game
     }
   ]
 })
