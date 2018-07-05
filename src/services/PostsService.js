@@ -24,4 +24,7 @@ export default {
   fetchGameCards () {
     return Api().get('game')
   }
+
+  // USER
+  
 }

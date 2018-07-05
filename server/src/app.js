@@ -3,6 +3,15 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan')
 var Card = require("../models/card");
+const jwt = require('jsonwebtoken');
+const passport = require('passport');
+const passportJWT = require('passport-jwt'); 
+const ExtractJwt = passportJWT.ExtractJwt; 
+const JwtStrategy = passportJWT.Strategy; 
+const jwtOptions = {} 
+jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt'); 
+jwtOptions.secretOrKey = 'movieratingapplicationsecretkey';
+const User = require('../models/User.js');
 
 const app = express()
 
@@ -17,6 +26,7 @@ db.once("open", function(callback){
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
+app.use(passport.initialize());
 
 // Fetch all cards
 app.get('/cards', (req, res) => {
@@ -118,5 +128,30 @@ app.get('/game', (req, res) => {
     })
   }).sort({_id:-1})
 })
+
+/*
+
+        CONTROLLER/USER
+
+*/ 
+
+// register a user 
+app.post('/users/register', (req, res) => { 
+  const name = req.body.name; 
+  const email = req.body.email; 
+  const password = req.body.password; 
+  const newUser = new User({
+    name, 
+    email, 
+    password, 
+  });
+  User.createUser(newUser, (error, user) => { 
+    if (error) { console.log(error); 
+    } 
+    res.send({ user }); 
+  }); 
+});
+
+
 
 app.listen(process.env.PORT || 8083)

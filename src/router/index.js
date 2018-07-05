@@ -4,6 +4,7 @@ import Cards from '@/components/Cards'
 import NewCard from '@/components/NewCard'
 import EditCard from '@/components/EditCard'
 import Game from '@/components/Game'
+import Register from '@/components/Register';
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/game',
       name: 'Game',
       component: Game
+    },
+    {
+      path: '/users/register',
+      name: 'Register',
+      component: Register
     }
   ]
 })
